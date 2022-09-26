@@ -10,8 +10,8 @@ using MvcPlanner.Data;
 namespace MvcPlanner.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220919134109_addModelUpdate")]
-    partial class addModelUpdate
+    [Migration("20220926155010_ActualMigration")]
+    partial class ActualMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace MvcPlanner.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MvcController.Models.Expense", b =>
+            modelBuilder.Entity("MvcPlanner.Models.Expense", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -40,7 +40,7 @@ namespace MvcPlanner.Migrations
                     b.ToTable("Expenses");
                 });
 
-            modelBuilder.Entity("MvcController.Models.Item", b =>
+            modelBuilder.Entity("MvcPlanner.Models.Item", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -61,7 +61,7 @@ namespace MvcPlanner.Migrations
                     b.ToTable("Items");
                 });
 
-            modelBuilder.Entity("MvcController.Models.Planner", b =>
+            modelBuilder.Entity("MvcPlanner.Models.Planner", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -76,6 +76,9 @@ namespace MvcPlanner.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActualPressed")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDone")
                         .HasColumnType("bit");

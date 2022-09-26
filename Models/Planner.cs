@@ -15,5 +15,6 @@ namespace MvcPlanner.Models
         public DateTime? DateCreated { get; set; }
         public DateTime? DateUpdated { get; set; }
         public bool IsDone { get; set; }
+        public bool IsActualPressed { get; set; }
     }
 }

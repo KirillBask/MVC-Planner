@@ -3,6 +3,7 @@ using MvcPlanner.Data;
 using MvcPlanner.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MvcPlanner.Controllers
 {
@@ -17,8 +18,8 @@ namespace MvcPlanner.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Planner> objList = _db.PlannedWork;
-            return View(objList);
+            IEnumerable<Planner> workList = _db.PlannedWork;
+            return View(workList);
         }
 
         public IActionResult Create()
@@ -113,6 +114,25 @@ namespace MvcPlanner.Controllers
             obj.IsDone = true;
             _db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Actual()
+        {
+            var workList = new List<Planner>();
+            workList.AddRange(_db.PlannedWork);
+            var specifyList = workList.Where(x => !x.IsDone);
+            _db.SaveChanges();
+            return View(specifyList);
+        }
+
+        [HttpGet]
+        public IActionResult All()
+        {
+            var workList = new List<Planner>();
+            workList.AddRange(_db.PlannedWork);
+            _db.SaveChanges();
+            return View("Index", workList);
         }
     }
 }

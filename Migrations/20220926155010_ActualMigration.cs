@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MvcPlanner.Migrations
 {
-    public partial class addModelUpdate : Migration
+    public partial class ActualMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -46,7 +46,8 @@ namespace MvcPlanner.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDone = table.Column<bool>(type: "bit", nullable: false)
+                    IsDone = table.Column<bool>(type: "bit", nullable: false),
+                    IsActualPressed = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
